@@ -1,0 +1,8 @@
+arch: x86_64
+packages:
+- .
+extra-deps: []
+extra-package-dbs: []
+flags: {}
+resolver: lts-12.8
+system-ghc: true
