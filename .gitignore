@@ -2,6 +2,7 @@ dist
 .dyn_hi
 *.dyn_o
 *.hi
+*.html
 *.o
 scrapbook
 .stack-work/

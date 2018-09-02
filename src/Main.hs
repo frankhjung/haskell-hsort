@@ -1,6 +1,8 @@
 module Main(main) where
 
-import qualified Data.Sort (sort)
+import qualified Data.List    as DL (sort)
+import qualified Data.Text    as DT (lines, unlines)
+import qualified Data.Text.IO as DTIO (interact)
 
 main :: IO ()
-main = interact ( unlines . Data.Sort.sort . lines )
+main = DTIO.interact $ DT.unlines . DL.sort . DT.lines

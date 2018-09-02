@@ -20,12 +20,6 @@ tags:	$(SRCS)
 build:	$(SRCS)
 	@stack build
 
-bench:	build
-	@stack bench
-
-docs:	build
-	@stack haddock
-
 setup:
 	-stack setup
 	-stack query
@@ -39,7 +33,7 @@ clean:
 	@$(RM) -rf dist
 
 cleanall: clean
-	@$(RM) -rf .stack-work/
+	@$(RM) -rf .stack-work/ *.test
 
 ghci:
 	@stack ghci --ghci-options -Wno-type-defaults
