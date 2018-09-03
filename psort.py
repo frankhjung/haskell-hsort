@@ -6,9 +6,8 @@ if __name__ == '__main__':
     rc = 0
     try:
         lines = sys.stdin.readlines()
-        lines.sort()
         out = sys.stdout
-        map(out.write, lines)
+        map(out.write, sorted(lines))
     except:
         rc = 1
     finally:
