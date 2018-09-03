@@ -25,6 +25,9 @@ setup:
 	-stack query
 	-stack ls dependencies
 
+test-setup:
+	-seq 50000 | xargs -I -- od -vAn -N4 -tx4 /dev/urandom > random.test
+
 install:
 	@stack install --local-bin-path $(HOME)/bin $(TARGET)
 
