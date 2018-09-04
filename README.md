@@ -7,6 +7,13 @@ Examples](http://localhost/dokuwiki/doku.php?id=frank:haskell:examples:sort)
 
 Find an efficient way to sort text.
 
+## sort algorithms
+
+### merge sort
+
+From [Data.List.sort](http://hackage.haskell.org/package/base/docs/Data-List.html#v:sort)
+
+
 ## test data
 
 Generate a random list of strings to sort:
@@ -73,3 +80,30 @@ elapsed="$( TIMEFORMAT='%lU user, %lE real, %lS sys';time ( hsort < random.test 
 0m0.145s user, 0m0.149s real, 0m0.004s sys
 ```
 
+# TODO - test the following
+
+Instead of piping straight to `f2`, sort first ...
+
+```haskell
+-- file: resourcet.hs
+
+import Control.Monad.IO.Class (liftIO)
+import Control.Monad.Trans.Resource
+import System.IO
+
+copy_resourcet :: ResIO ()
+copy_resourcet = do
+    (_, f1) <- allocate (openFile "read.txt" ReadMode) hClose
+    (_, f2) <- allocate (openFile "write.txt" WriteMode) hClose
+    liftIO $ hGetContents f1 >>= hPutStr f2
+```
+
+Required packages:
+
+  - `resourcet` for `Control.Monad.Trans.Resource`
+  - `transformers` for `Control.Monad.IO.Class`
+
+References:
+
+  - [Haskell High Performance Programming](https://www.packtpub.com/mapt/book/application_development/9781786464217/6/ch06lvl1sec41/reading%252c-writing%252c-and-handling-resources)
+  - [hGetContents](http://hackage.haskell.org/package/text-1.2.3.0/docs/Data-Text-Lazy-IO.html#v:hGetContents)

@@ -4,7 +4,7 @@ TARGET 	:= hsort
 SUBS	:= $(wildcard */)
 SRCS	:= $(wildcard $(addsuffix *.hs, $(SUBS)))
 
-all:	check build
+all:	check build bench tags
 
 check:	style lint tags
 
@@ -20,15 +20,20 @@ tags:	$(SRCS)
 build:	$(SRCS)
 	@stack build
 
+doc:	$(SRCS)
+	@stack haddock
+
+.PHONY: bench
+bench:
+	@stack bench
+
+.PHONY: bench
 setup:
 	-stack setup
 	-stack query
 	-stack ls dependencies
 
-test-setup:
-	-seq 50000 | xargs -I -- od -vAn -N4 -tx4 /dev/urandom > random.test
-
-install:
+install: $(SRCS)
 	@stack install --local-bin-path $(HOME)/bin $(TARGET)
 
 clean:
