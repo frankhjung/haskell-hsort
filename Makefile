@@ -4,7 +4,7 @@ TARGET 	:= hsort
 SUBS	:= $(wildcard */)
 SRCS	:= $(wildcard $(addsuffix *.hs, $(SUBS)))
 
-all:	check build bench tags
+all:	check build tags install
 
 check:	style lint tags
 

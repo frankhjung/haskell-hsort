@@ -17,6 +17,6 @@ echo python sort
 elapsed="$( TIMEFORMAT='%lU user, %lE real, %lS sys';time ( ./psort.py < random.test > random.sorted.test ) 2>&1 1>/dev/null )"; echo $elapsed
 
 # bench mark haskell merge sort
-echo haskell sort
-elapsed="$( TIMEFORMAT='%lU user, %lE real, %lS sys';time ( hsort < random.test > random.sorted.test ) 2>&1 1>/dev/null )"; echo $elapsed
+echo haskell Data.List sort
+elapsed="$( TIMEFORMAT='%lU user, %lE real, %lS sys';time ( hsort -l < random.test > random.sorted.test ) 2>&1 1>/dev/null )"; echo $elapsed
 
