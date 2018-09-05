@@ -20,3 +20,11 @@ elapsed="$( TIMEFORMAT='%lU user, %lE real, %lS sys';time ( ./psort.py < random.
 echo haskell Data.List sort
 elapsed="$( TIMEFORMAT='%lU user, %lE real, %lS sys';time ( hsort -l < random.test > random.sorted.test ) 2>&1 1>/dev/null )"; echo $elapsed
 
+# bench mark haskell sequence sort
+echo haskell Data.Sequence sort
+elapsed="$( TIMEFORMAT='%lU user, %lE real, %lS sys';time ( hsort -s < random.test > random.sorted.test ) 2>&1 1>/dev/null )"; echo $elapsed
+
+# bench mark haskell sequence sort
+echo haskell Data.Sequence unstable sort
+elapsed="$( TIMEFORMAT='%lU user, %lE real, %lS sys';time ( hsort -u < random.test > random.sorted.test ) 2>&1 1>/dev/null )"; echo $elapsed
+

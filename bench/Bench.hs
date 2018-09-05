@@ -8,7 +8,7 @@ import           Criterion.Main (Benchmark (..), bench, bgroup, defaultMain,
 import qualified System.Random  (randomRIO)
 
 import qualified Data.List      (sort)
-import qualified Data.Sequence  (fromList, sort)
+import qualified Data.Sequence  (fromList, sort, unstableSort)
 
 -- | Create a random value between 0 and n
 int :: Int -> IO Int
@@ -24,8 +24,9 @@ benchAtSize n =
     \xs ->
       bgroup (show n)
         [
-          bench "Data.List"     $ nf Data.List.sort xs
-        , bench "Data.Sequence" $ nf (Data.Sequence.sort . Data.Sequence.fromList) xs
+          bench "Data.List merge sort"     $ nf Data.List.sort xs
+        , bench "Data.Sequence stable sort" $ nf (Data.Sequence.sort . Data.Sequence.fromList) xs
+        , bench "Data.Sequence unstable sort" $ nf (Data.Sequence.unstableSort . Data.Sequence.fromList) xs
         ]
 
 --
