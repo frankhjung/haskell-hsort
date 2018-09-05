@@ -11,8 +11,8 @@ import qualified Data.List      (sort)
 import qualified Data.Sequence  (fromList, sort, unstableSort)
 
 -- | Create a random value between 0 and n
-int :: Int -> IO Int
-int n = System.Random.randomRIO (0, n)
+randomInt :: Int -> IO Int
+randomInt n = System.Random.randomRIO (0, n)
 
 -- | Run sort benchmarks.
 -- Where:
@@ -20,11 +20,11 @@ int n = System.Random.randomRIO (0, n)
 --  replicateM = perform action n times collection results
 benchAtSize :: Int -> Benchmark
 benchAtSize n =
-  env (Control.Monad.replicateM n (int n)) $
+  env (Control.Monad.replicateM n (randomInt n)) $
     \xs ->
       bgroup (show n)
         [
-          bench "Data.List merge sort"     $ nf Data.List.sort xs
+          bench "Data.List merge sort" $ nf Data.List.sort xs
         , bench "Data.Sequence stable sort" $ nf (Data.Sequence.sort . Data.Sequence.fromList) xs
         , bench "Data.Sequence unstable sort" $ nf (Data.Sequence.unstableSort . Data.Sequence.fromList) xs
         ]
