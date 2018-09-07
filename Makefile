@@ -23,25 +23,27 @@ build:	$(SRCS)
 doc:	$(SRCS)
 	@stack haddock
 
-.PHONY: bench
-bench:
+bench:	$(SRCS)
 	@stack bench
 
-.PHONY: bench
+install: $(SRCS)
+	@stack install --local-bin-path $(HOME)/bin $(TARGET)
+
+.PHONY: setup
 setup:
 	-stack setup
 	-stack query
 	-stack ls dependencies
 
-install: $(SRCS)
-	@stack install --local-bin-path $(HOME)/bin $(TARGET)
-
+.PHONY: clean
 clean:
 	@stack clean
-	@$(RM) -rf dist
+	@$(RM) -rf dist random.*
 
+.PHONY: cleanall
 cleanall: clean
 	@$(RM) -rf .stack-work/ *.test
 
+.PHONY: ghci
 ghci:
 	@stack ghci --ghci-options -Wno-type-defaults

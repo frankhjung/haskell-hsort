@@ -2,7 +2,8 @@ allow-newer: false
 arch: x86_64
 packages:
 - .
-extra-deps: []
+extra-deps: 
+- random-strings-0.1.1.0
 extra-package-dbs: []
 flags: {}
 resolver: lts-12.8

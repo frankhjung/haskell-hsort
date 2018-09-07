@@ -2,25 +2,21 @@
 
 module Main (main) where
 
+import qualified Generator      (randomUpper)
+
 import qualified Control.Monad  (replicateM)
 import           Criterion.Main (Benchmark (..), bench, bgroup, defaultMain,
                                  env, nf)
-import qualified System.Random  (randomRIO)
-
 import qualified Data.List      (sort)
 import qualified Data.Sequence  (fromList, sort, unstableSort)
 
--- | Create a random value between 0 and n
-randomInt :: Int -> IO Int
-randomInt n = System.Random.randomRIO (0, n)
-
--- | Run sort benchmarks.
+-- | Declare benchmarks.
 -- Where:
---  env = run benchmarks in environment
---  replicateM = perform action n times collection results
+--  env        = setup test data as list of size n words each of length 10 characters
+--  replicateM = perform action n times collecting results
 benchAtSize :: Int -> Benchmark
 benchAtSize n =
-  env (Control.Monad.replicateM n (randomInt n)) $
+  env (Control.Monad.replicateM n (Generator.randomUpper 10)) $
     \xs ->
       bgroup (show n)
         [
@@ -29,7 +25,6 @@ benchAtSize n =
         , bench "Data.Sequence unstable sort" $ nf (Data.Sequence.unstableSort . Data.Sequence.fromList) xs
         ]
 
---
--- | Run main for different sized inputs.
+-- | Benchmark with different list sizes.
 main :: IO ()
 main = defaultMain (map benchAtSize [100, 1000, 10000])
