@@ -38,7 +38,7 @@ install: $(SRCS)
 
 clean:
 	@stack clean
-	@$(RM) -rf dist
+	@$(RM) -rf dist random.*
 
 cleanall: clean
 	@$(RM) -rf .stack-work/ *.test

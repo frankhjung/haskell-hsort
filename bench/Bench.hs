@@ -2,17 +2,13 @@
 
 module Main (main) where
 
+import qualified Generator      (randomUpper)
+
 import qualified Control.Monad  (replicateM)
 import           Criterion.Main (Benchmark (..), bench, bgroup, defaultMain,
                                  env, nf)
-import qualified System.Random  (randomRIO)
-
 import qualified Data.List      (sort)
 import qualified Data.Sequence  (fromList, sort, unstableSort)
-
--- | Create a random value between 0 and n
-randomInt :: Int -> IO Int
-randomInt n = System.Random.randomRIO (0, n)
 
 -- | Run sort benchmarks.
 -- Where:
@@ -20,7 +16,7 @@ randomInt n = System.Random.randomRIO (0, n)
 --  replicateM = perform action n times collection results
 benchAtSize :: Int -> Benchmark
 benchAtSize n =
-  env (Control.Monad.replicateM n (randomInt n)) $
+  env (Control.Monad.replicateM n (Generator.randomUpper 10)) $
     \xs ->
       bgroup (show n)
         [

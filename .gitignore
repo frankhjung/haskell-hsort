@@ -4,6 +4,7 @@ dist
 *.hi
 *.html
 *.o
+random.*
 scrapbook
 .stack-work/
 .*.swp
