@@ -17,7 +17,7 @@ import qualified System.Random      (randomRIO)
 import qualified Test.RandomStrings as S (onlyAlphaNum, onlyUpper, randomASCII,
                                           randomWord)
 
--- | Create a random integer between 0 and n
+-- | Create a random integer between 0 and n.
 randomInt :: Int -> IO Int
 randomInt n = System.Random.randomRIO (0, n)
 

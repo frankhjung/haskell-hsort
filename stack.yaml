@@ -2,8 +2,10 @@ allow-newer: false
 arch: x86_64
 packages:
 - .
-extra-deps: 
+extra-deps:
 - random-strings-0.1.1.0
+#- containers-0.5.11.0
+#- random-1.1
 extra-package-dbs: []
 flags: {}
 resolver: lts-12.8

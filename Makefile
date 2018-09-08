@@ -4,7 +4,7 @@ TARGET 	:= hsort
 SUBS	:= $(wildcard */)
 SRCS	:= $(wildcard $(addsuffix *.hs, $(SUBS)))
 
-all:	check build tags install
+all:	check build tags install doc
 
 check:	style lint tags
 
@@ -20,13 +20,16 @@ tags:	$(SRCS)
 build:	$(SRCS)
 	@stack build
 
-doc:	$(SRCS)
+.PHONY: doc
+doc:
 	@stack haddock
 
-bench:	$(SRCS)
+.PHONY: bench
+bench:
 	@stack bench
 
-install: $(SRCS)
+.PHONY: install
+install:
 	@stack install --local-bin-path $(HOME)/bin $(TARGET)
 
 .PHONY: setup
