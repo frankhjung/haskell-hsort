@@ -5,7 +5,7 @@ SUBS	:= $(wildcard */)
 SRCS	:= $(wildcard $(addsuffix *.hs, $(SUBS)))
 ARGS	:= "-h"
 
-default: tags check build test exec
+default: tags check build install test exec
 
 all:	tags check build install doc bench exec
 

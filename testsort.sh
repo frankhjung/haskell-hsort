@@ -11,6 +11,7 @@ echo generating test data ...
 hsort -t 50000 > random.test
 rm -f random.bench
 rm -f random.sorted
+echo
 
 # bench mark sort(1) command line utility
 echo unix sort
