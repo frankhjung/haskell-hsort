@@ -7,6 +7,7 @@
 # alphanumerics
 # cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 10 | head -n 50000 > random.test
 # upper-case alphabetical
+echo generating test data ...
 hsort -t 50000 > random.test
 rm -f random.bench
 rm -f random.sorted

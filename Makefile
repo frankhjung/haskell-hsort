@@ -3,8 +3,11 @@
 TARGET 	:= hsort
 SUBS	:= $(wildcard */)
 SRCS	:= $(wildcard $(addsuffix *.hs, $(SUBS)))
+ARGS	:= "-h"
 
-all:	check build tags install doc
+default: tags check build test exec
+
+all:	tags check build install doc bench exec
 
 check:	style lint tags
 
@@ -20,6 +23,10 @@ tags:	$(SRCS)
 build:	$(SRCS)
 	@stack build
 
+.PHONY: exec
+exec:	# Example:  make ARGS="-h" exec
+	@stack exec -- $(TARGET) $(ARGS)
+
 .PHONY: doc
 doc:
 	@stack haddock
@@ -27,6 +34,10 @@ doc:
 .PHONY: bench
 bench:
 	@stack bench
+
+.PHONY: test
+test:
+	./testsort.sh
 
 .PHONY: install
 install:

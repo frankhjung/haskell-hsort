@@ -10,13 +10,17 @@ import           Criterion.Main (Benchmark (..), bench, bgroup, defaultMain,
 import qualified Data.List      (sort)
 import qualified Data.Sequence  (fromList, sort, unstableSort)
 
--- | Declare benchmarks.
+-- | Default word size
+wordSize :: Int
+wordSize = 10
+
+-- | Benchmarks each sort algorithm.
 -- Where:
 --  env        = setup test data as list of size n words each of length 10 characters
---  replicateM = perform action n times collecting results
+--  replicateM = perform action n times, collecting results
 benchAtSize :: Int -> Benchmark
 benchAtSize n =
-  env (Control.Monad.replicateM n (Generator.randomUpper 10)) $
+  env (Control.Monad.replicateM n (Generator.randomUpper wordSize)) $
     \xs ->
       bgroup (show n)
         [
