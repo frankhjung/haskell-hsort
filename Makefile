@@ -51,6 +51,7 @@ setup:
 
 .PHONY: clean
 clean:
+	@cabal clean
 	@stack clean
 	@$(RM) -rf dist random.*
 

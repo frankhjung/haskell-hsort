@@ -1,12 +1,11 @@
 allow-newer: false
 arch: x86_64
-packages:
-- .
 extra-deps:
 - random-strings-0.1.1.0
-#- containers-0.5.11.0
-#- random-1.1
-extra-package-dbs: []
-flags: {}
-resolver: lts-12.8
+- containers-0.5.11.0
+- random-1.1
+packages:
+- .
+# https://www.stackage.org/ ghc 8.2.2 => lts 11.22
+resolver: lts-11.22
 system-ghc: true
