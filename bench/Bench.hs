@@ -31,4 +31,4 @@ benchAtSize n =
 
 -- | Benchmark with different list sizes.
 main :: IO ()
-main = defaultMain (map benchAtSize [100, 1000, 10000])
+main = defaultMain (map benchAtSize [100000])

@@ -23,9 +23,9 @@ main = do
   args <- getArgs
 
   case args of
-    ["-l"] -> sortText L.sort
-    ["-s"] -> sortSequence S.sort
-    ["-u"] -> sortSequence S.unstableSort
+    ["-l"]    -> sortText L.sort
+    ["-s"]    -> sortSequence S.sort
+    ["-u"]    -> sortSequence S.unstableSort
     ["-t", t] -> mapM_ putStrLn =<< replicateM n (randomUpper 10) where n = read t :: Int
-    _ -> putStrLn usage
+    _         -> putStrLn usage
 
