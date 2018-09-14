@@ -48,7 +48,11 @@ haskell Data.Sequence unstable sort
 ## benchmarks
 
 Using [Criterion](http://hackage.haskell.org/package/criterion) to compare the
-Haskell sort functions:
+Haskell sort functions. 
+
+The rendered report looks like [this](./benchmark.html.pdf)
+
+The command line output is here:
 
 ```
 Configuring hsort-0.7.0...

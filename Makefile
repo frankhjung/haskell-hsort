@@ -33,7 +33,7 @@ doc:
 
 .PHONY: bench
 bench:
-	@stack bench
+	@stack bench --benchmark-arguments "-o benchmark.html"
 
 .PHONY: test
 test:
