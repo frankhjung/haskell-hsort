@@ -30,6 +30,12 @@ elapsed="$( TIMEFORMAT='%lU user, %lE real, %lS sys';time ( hsort -l < random.te
 [[ $(cmp random.bench random.sorted) ]] && echo sort failed
 echo
 
+# bench mark haskell naive quick sort
+echo haskell Data.List quicksort
+elapsed="$( TIMEFORMAT='%lU user, %lE real, %lS sys';time ( hsort -q < random.test > random.sorted ) 2>&1 1>/dev/null )"; echo $elapsed
+[[ $(cmp random.bench random.sorted) ]] && echo sort failed
+echo
+
 # bench mark haskell sequence sort
 echo haskell Data.Sequence sort
 elapsed="$( TIMEFORMAT='%lU user, %lE real, %lS sys';time ( hsort -s < random.test > random.sorted ) 2>&1 1>/dev/null )"; echo $elapsed

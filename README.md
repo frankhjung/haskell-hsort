@@ -8,6 +8,7 @@ Compare a number of different text sort algorithms.
 
 * Benchmark using system [sort](http://www.gnu.org/software/coreutils/)
 * [Data.List.sort](http://hackage.haskell.org/package/base/docs/Data-List.html#v:sort) (merge sort)
+* [Naive QuickSort](http://wiki.c2.com/?QuickSortInHaskell)
 * [Data.Sequence.sort](http://hackage.haskell.org/package/containers-0.6.0.1/docs/src/Data.Sequence.Internal.Sorting.html#sort)
 * [Data.Sequence.unstableSort](http://hackage.haskell.org/package/containers-0.6.0.1/docs/src/Data.Sequence.Internal.Sorting.html#unstableSort)
 
@@ -32,19 +33,22 @@ $ ./testsort.sh
 generating test data ...
 
 unix sort
-0m0.095s user, 0m0.096s real, 0m0.000s sys
+0m0.099s user, 0m0.103s real, 0m0.004s sys
 
 python sort
-0m0.042s user, 0m0.046s real, 0m0.004s sys
+0m0.042s user, 0m0.051s real, 0m0.008s sys
 
 haskell Data.List sort
-0m0.128s user, 0m0.139s real, 0m0.012s sys
+0m0.135s user, 0m0.143s real, 0m0.008s sys
+
+haskell Data.List quicksort
+0m0.133s user, 0m0.157s real, 0m0.024s sys
 
 haskell Data.Sequence sort
 0m0.107s user, 0m0.119s real, 0m0.012s sys
 
 haskell Data.Sequence unstable sort
-0m0.094s user, 0m0.110s real, 0m0.017s sys
+0m0.101s user, 0m0.117s real, 0m0.016s sys
 ```
 
 ## benchmarks
@@ -57,30 +61,37 @@ The rendered report looks like [this](./benchmark.html.pdf)
 The command line output is here:
 
 ```
-hsort-0.9.0: benchmarks
-Running 1 benchmarks...  
+hsort-0.10.0: benchmarks
+Running 1 benchmarks...
 Benchmark benchmark: RUNNING...
 benchmarking 100000/Data.List merge sort
-time                 331.6 ms   (313.3 ms .. 350.9 ms)
-                     0.999 R²   (0.999 R² .. 1.000 R²)
-mean                 324.8 ms   (323.3 ms .. 325.9 ms)
-std dev              1.677 ms   (0.0 s .. 1.916 ms)
+time                 331.1 ms   (313.9 ms .. 346.7 ms)
+                     1.000 R²   (0.999 R² .. 1.000 R²)
+mean                 323.1 ms   (321.7 ms .. 325.2 ms)
+std dev              1.877 ms   (0.0 s .. 2.049 ms)
 variance introduced by outliers: 19% (moderately inflated)
-                         
+             
+benchmarking 100000/Data.List quick sort
+time                 324.3 ms   (321.6 ms .. 326.6 ms)
+                     1.000 R²   (1.000 R² .. 1.000 R²)
+mean                 314.3 ms   (310.0 ms .. 317.6 ms)
+std dev              4.177 ms   (2.389 ms .. 5.078 ms)
+variance introduced by outliers: 16% (moderately inflated)
+             
 benchmarking 100000/Data.Sequence stable sort
-time                 260.9 ms   (255.6 ms .. 266.8 ms)
-                     1.000 R²   (0.999 R² .. 1.000 R²)
-mean                 253.8 ms   (250.4 ms .. 255.7 ms)
-std dev              3.208 ms   (1.629 ms .. 4.041 ms)
+time                 275.7 ms   (266.9 ms .. 284.1 ms)
+                     0.999 R²   (0.998 R² .. 1.000 R²)
+mean                 261.3 ms   (254.7 ms .. 267.4 ms)
+std dev              6.957 ms   (4.001 ms .. 9.804 ms)
 variance introduced by outliers: 16% (moderately inflated)
-                         
+             
 benchmarking 100000/Data.Sequence unstable sort
-time                 243.5 ms   (233.8 ms .. 253.2 ms)
-                     1.000 R²   (0.999 R² .. 1.000 R²)
-mean                 233.4 ms   (229.3 ms .. 236.9 ms)
-std dev              4.798 ms   (4.036 ms .. 5.390 ms)
+time                 245.1 ms   (240.0 ms .. 249.9 ms)
+                     1.000 R²   (0.998 R² .. 1.000 R²)
+mean                 237.9 ms   (235.1 ms .. 239.8 ms)
+std dev              2.703 ms   (1.082 ms .. 3.639 ms)
 variance introduced by outliers: 16% (moderately inflated)
-                         
+             
 Benchmark benchmark: FINISH
 ```
 
@@ -125,10 +136,10 @@ directory: '1.3.1.5'
 
 ```
 hsort:
-  version: '0.9.0'
+  version: '0.10.0'
 ```
 
-### stack ls dependencies
+### stack list-dependencies
 
 ```
 array 0.5.2.0
@@ -138,7 +149,7 @@ bytestring 0.10.8.2
 containers 0.5.11.0
 deepseq 1.4.3.0
 ghc-prim 0.5.1.1
-hsort 0.9.0
+hsort 0.10.0
 integer-gmp 1.0.1.0
 parseargs 0.2.0.8
 random 1.1

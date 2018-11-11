@@ -3,6 +3,7 @@
 module Main (main) where
 
 import qualified Generator      (randomUpper)
+import qualified QuickSort      (sort)
 
 import qualified Control.Monad  (replicateM)
 import           Criterion.Main (Benchmark (..), bench, bgroup, defaultMain,
@@ -25,6 +26,7 @@ benchAtSize n =
       bgroup (show n)
         [
           bench "Data.List merge sort" $ nf Data.List.sort xs
+        , bench "Data.List quick sort" $ nf QuickSort.sort xs
         , bench "Data.Sequence stable sort" $ nf (Data.Sequence.sort . Data.Sequence.fromList) xs
         , bench "Data.Sequence unstable sort" $ nf (Data.Sequence.unstableSort . Data.Sequence.fromList) xs
         ]

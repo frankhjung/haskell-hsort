@@ -47,7 +47,7 @@ install:
 setup:
 	-stack setup
 	-stack query
-	-stack ls dependencies
+	-stack list-dependencies
 
 .PHONY: clean
 clean:

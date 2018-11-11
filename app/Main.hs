@@ -7,16 +7,18 @@ import qualified Data.Sequence      as S (fromList, sort, unstableSort)
 import qualified Data.Text          as T (lines, unlines)
 import qualified Data.Text.IO       as O (interact)
 import           Generator          (randomUpper)
+import qualified QuickSort          as Q (sort)
 import           System.Environment (getArgs)
 
 usage :: String
-usage = "usage: hsort [-h|-l|-s|-u|-t int]"
+usage = "usage: hsort [-h|-l|-q|-s|-u|-t int]"
 
 sortText f = O.interact (T.unlines . f . T.lines)
 
 sortSequence f = sortText (F.toList . f . S.fromList)
 
--- process argument and execute requested sort algorithm or test generator
+-- | Process commandline arguments and execute requested sort algorithm
+-- or test generator
 main :: IO ()
 main = do
 
@@ -24,6 +26,7 @@ main = do
 
   case args of
     ["-l"]    -> sortText L.sort
+    ["-q"]    -> sortText Q.sort
     ["-s"]    -> sortSequence S.sort
     ["-u"]    -> sortSequence S.unstableSort
     ["-t", t] -> mapM_ putStrLn =<< replicateM n (randomUpper 10) where n = read t :: Int
