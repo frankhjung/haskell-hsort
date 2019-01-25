@@ -1,11 +1,15 @@
-allow-newer: false
-arch: x86_64
-extra-deps:
-- random-strings-0.1.1.0
-- containers-0.5.11.0
-- random-1.1
+# https://www.stackage.org/ ghc 8.4.4 => lts 12.26
+# https://www.stackage.org/lts-12.26/
+resolver: lts-12.26
+flags: {}
+allow-newer: true
 packages:
-- .
-# https://www.stackage.org/ ghc 8.2.2 => lts 11.22
-resolver: lts-11.22
+  - .
+extra-deps:
+  - containers-0.5.11.0
+  - criterion-1.4.1.0
+  - random-1.1
+  - random-strings-0.1.1.0
+arch: x86_64
 system-ghc: true
+

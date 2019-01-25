@@ -1,64 +1,58 @@
 #!/usr/bin/env make
 
-TARGET 	:= hsort
+.PHONY: build check tags style lint test exec bench doc install setup ghci clean cleanall
+
+TARGET	:= hsort
 SUBS	:= $(wildcard */)
 SRCS	:= $(wildcard $(addsuffix *.hs, $(SUBS)))
-ARGS	:= "-h"
+ARGS	?= -h
 
-default: tags check build install test exec
+default: build
 
-all:	tags check build install doc bench exec
-
-check:	style lint tags
-
-style:	$(SRCS)
-	@stylish-haskell -c .stylish-haskell.yaml -i $(SRCS)
-
-lint:	$(SRCS)
-	@hlint $(SRCS) --git --color --show
-
-tags:	$(SRCS)
-	@hasktags --ctags --extendedctag $(SRCS)
-
-build:	$(SRCS)
+build:
 	@stack build
 
-.PHONY: exec
+all:	check build test bench doc exec
+
+check:	tags style lint
+
+tags:
+	@hasktags --ctags --extendedctag $(SRCS)
+
+style:
+	@stylish-haskell -c .stylish-haskell.yaml -i $(SRCS)
+
+lint:
+	@hlint $(SRCS)
+
+test:
+	@stack test --coverage
+	./testsort.sh
+
 exec:	# Example:  make ARGS="-h" exec
 	@stack exec -- $(TARGET) $(ARGS)
 
-.PHONY: doc
+bench:
+	@stack bench --benchmark-arguments '-o .stack-work/benchmark.html'
+
 doc:
 	@stack haddock
 
-.PHONY: bench
-bench:
-	@stack bench --benchmark-arguments "-o benchmark.html"
-
-.PHONY: test
-test:
-	./testsort.sh
-
-.PHONY: install
 install:
-	@stack install --local-bin-path $(HOME)/bin $(TARGET)
+	@stack install --local-bin-path $(HOME)/bin
 
-.PHONY: setup
 setup:
 	-stack setup
+	-stack build --dependencies-only --test --no-run-tests
 	-stack query
-	-stack list-dependencies
+	-stack ls dependencies
 
-.PHONY: clean
+ghci:
+	@stack ghci --ghci-options -Wno-type-defaults
+
 clean:
-	@cabal clean
 	@stack clean
 	@$(RM) -rf dist random.*
 
-.PHONY: cleanall
 cleanall: clean
-	@$(RM) -rf .stack-work/ *.test
-
-.PHONY: ghci
-ghci:
-	@stack ghci --ghci-options -Wno-type-defaults
+	@$(RM) -rf .stack-work/

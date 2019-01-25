@@ -6,12 +6,16 @@ import qualified Data.List          as L (sort)
 import qualified Data.Sequence      as S (fromList, sort, unstableSort)
 import qualified Data.Text          as T (lines, unlines)
 import qualified Data.Text.IO       as O (interact)
+import           Data.Version       (showVersion)
 import           Generator          (randomUpper)
+import           Paths_hsort        (version)
 import qualified QuickSort          as Q (sort)
 import           System.Environment (getArgs)
 
-usage :: String
-usage = "usage: hsort [-h|-l|-q|-s|-u|-t int]"
+usage :: [String]
+usage = [ "usage: hsort [-h|-l|-q|-s|-u|-t int]"
+        , "Version: " ++ showVersion version
+        ]
 
 sortText f = O.interact (T.unlines . f . T.lines)
 
@@ -30,5 +34,5 @@ main = do
     ["-s"]    -> sortSequence S.sort
     ["-u"]    -> sortSequence S.unstableSort
     ["-t", t] -> mapM_ putStrLn =<< replicateM n (randomUpper 10) where n = read t :: Int
-    _         -> putStrLn usage
+    _         -> putStrLn $ unlines usage
 
