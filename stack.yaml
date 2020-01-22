@@ -1,15 +1,7 @@
-# https://www.stackage.org/ ghc 8.4.4 => lts 12.26
-# https://www.stackage.org/lts-12.26/
-resolver: lts-12.26
-flags: {}
-allow-newer: true
-packages:
-  - .
-extra-deps:
-  - containers-0.5.11.0
-  - criterion-1.4.1.0
-  - random-1.1
-  - random-strings-0.1.1.0
 arch: x86_64
 system-ghc: true
-
+resolver: lts-13.25
+allow-newer: false
+flags: {}
+packages: ['.']
+extra-deps: ['containers-0.6.0.1', 'criterion-1.5.5.0', 'random-1.1', 'random-strings-0.1.1.0']
