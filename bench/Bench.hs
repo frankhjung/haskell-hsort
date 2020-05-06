@@ -6,8 +6,7 @@ import qualified Generator      (randomUpper)
 import qualified QuickSort      (sort)
 
 import qualified Control.Monad  (replicateM)
-import           Criterion.Main (Benchmark (..), bench, bgroup, defaultMain,
-                                 env, nf)
+import           Criterion.Main (Benchmark, bench, bgroup, defaultMain, env, nf)
 import qualified Data.List      (sort)
 import qualified Data.Sequence  (fromList, sort, unstableSort)
 

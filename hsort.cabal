@@ -1,5 +1,5 @@
 name:               hsort
-version:            0.12.0
+version:            0.13.0
 synopsis:           Test sort functions
 description:        Test sort function over String and Text data types
 homepage:           https://github.com/frankhjung/hsort#readme

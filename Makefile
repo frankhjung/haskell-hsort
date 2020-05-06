@@ -55,4 +55,5 @@ clean:
 	@$(RM) -rf dist random.*
 
 cleanall: clean
+	@stack clean --full
 	@$(RM) -rf .stack-work/
