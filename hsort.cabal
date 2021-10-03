@@ -7,13 +7,13 @@ license:            BSD3
 license-file:       LICENSE
 author:             Frank H Jung
 maintainer:         frankhjung@linux.com
-copyright:          Copyright © 2017-2020 Frank H Jung
+copyright:          Copyright © 2017-2021 Frank H Jung
 category:           education
 build-type:         Simple
 cabal-version:      >=1.10
 extra-source-files: README.md
 
-executable hsort
+executable          hsort
   hs-source-dirs:   app
   main-is:          Main.hs
   default-language: Haskell2010
@@ -21,6 +21,8 @@ executable hsort
   build-depends:    base
                   , containers
                   , parseargs
+                  , random
+                  , random-strings
                   , text
                   , hsort
 
@@ -30,11 +32,10 @@ library
                   , QuickSort
   default-language: Haskell2010
   build-depends:    base
-                  , random-strings
                   , random
-  ghc-options:      -Wall
+                  , random-strings
 
-benchmark benchmark
+benchmark           benchmark
   hs-source-dirs:   bench
   main-is:          Bench.hs
   default-language: Haskell2010
@@ -42,6 +43,8 @@ benchmark benchmark
   build-depends:    base
                   , containers
                   , criterion
+                  , random
+                  , random-strings
                   , text
                   , hsort
 

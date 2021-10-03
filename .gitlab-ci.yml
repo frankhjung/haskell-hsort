@@ -1,3 +1,5 @@
+---
+
 stages:
   - build
   - deploy
@@ -15,9 +17,7 @@ build:
   stage: build
   script:
     - make setup clean all
-    - mkdir -p public
-    - cp -pr .stack-work/install/x86_64-linux/lts-*/*/hpc/* public/
-    - cp -pr .stack-work/dist/x86_64-linux/Cabal-*/doc/html/${TARGET}/* public/
+    - mv $(stack path --local-doc-root) public/
   artifacts:
     paths:
       - public
@@ -39,5 +39,4 @@ pages:
     - build
   artifacts:
     paths:
-    - public
-
+      - public

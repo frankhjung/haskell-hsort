@@ -3,6 +3,7 @@ dist
 *.dyn_o
 *.hi
 *.html
+*.lock
 *.o
 random.*
 scrapbook
@@ -10,3 +11,4 @@ scrapbook
 .*.swp
 tags
 *.test
+*.tix

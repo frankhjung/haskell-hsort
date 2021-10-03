@@ -23,7 +23,7 @@ style:
 	@stylish-haskell -c .stylish-haskell.yaml -i $(SRCS)
 
 lint:
-	@hlint $(SRCS)
+	@hlint --color $(SRCS)
 
 test:
 	@stack test --coverage
