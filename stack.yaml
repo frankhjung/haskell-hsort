@@ -1,12 +1,15 @@
 ---
+
 arch: x86_64
 system-ghc: true
-resolver: lts-14.27
+resolver: lts-16.31
 allow-newer: false
 flags: {}
 packages: ['.']
 extra-deps:
-  - 'containers-0.6.0.1'
-  - 'criterion-1.5.5.0'
+  - 'containers-0.6.2.1'
+  - 'criterion-1.5.7.0'
+  - 'parseargs-0.2.0.9'
   - 'random-1.1'
   - 'random-strings-0.1.1.0'
+  - 'text-1.2.4.0'

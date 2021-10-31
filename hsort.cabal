@@ -1,50 +1,48 @@
-name:               hsort
-version:            0.13.0
-synopsis:           Test sort functions
-description:        Test sort function over String and Text data types
-homepage:           https://github.com/frankhjung/hsort#readme
-license:            BSD3
-license-file:       LICENSE
-author:             Frank H Jung
-maintainer:         frankhjung@linux.com
-copyright:          Copyright © 2017-2021 Frank H Jung
-category:           education
-build-type:         Simple
-cabal-version:      >=1.10
-extra-source-files: README.md
+cabal-version:        >=1.10
 
-executable          hsort
-  hs-source-dirs:   app
-  main-is:          Main.hs
-  default-language: Haskell2010
-  other-modules:    Paths_hsort
-  build-depends:    base
-                  , containers
-                  , parseargs
-                  , random
-                  , random-strings
-                  , text
-                  , hsort
+name:                 hsort
+version:              0.14.0
+synopsis:             Test sort functions
+description:          Test sort function over String and Text data types
+homepage:             https://github.com/frankhjung/hsort#readme
+license:              BSD3
+license-file:         LICENSE
+author:               Frank Jung
+maintainer:           frankhjung@linux.com
+copyright:            Copyright © 2017-2021 Frank H Jung
+build-type:           Simple
+extra-source-files:   README.md
 
 library
-  hs-source-dirs:   src
-  exposed-modules:  Generator
-                  , QuickSort
-  default-language: Haskell2010
-  build-depends:    base
-                  , random
-                  , random-strings
+  hs-source-dirs:     src
+  exposed-modules:    QuickSort
+                    , Generator
+  build-depends:      base >=4.13 && <4.14
+                    , random >=1.1 && <1.2
+                    , random-strings >= 0.1 && <1.2
+  default-language:   Haskell2010
 
-benchmark           benchmark
-  hs-source-dirs:   bench
-  main-is:          Bench.hs
-  default-language: Haskell2010
-  type:             exitcode-stdio-1.0
-  build-depends:    base
-                  , containers
-                  , criterion
-                  , random
-                  , random-strings
-                  , text
-                  , hsort
+executable            hsort
+  hs-source-dirs:     app
+  main-is:            Main.hs
+  build-depends:      base >=4.13 && <4.14
+                    , containers
+                    , parseargs
+                    , random >=1.1 && <1.2
+                    , random-strings >= 0.1 && <1.2
+                    , text >= 1.2 && <1.3
+                    , hsort
+  default-language:   Haskell2010
 
+benchmark             benchmark
+  hs-source-dirs:     bench
+  main-is:            Bench.hs
+  default-language:   Haskell2010
+  type:               exitcode-stdio-1.0
+  build-depends:      base
+                    , containers
+                    , criterion
+                    , random >=1.1 && <1.2
+                    , random-strings >= 0.1 && <1.2
+                    , text >= 1.2 && <1.3
+                    , hsort

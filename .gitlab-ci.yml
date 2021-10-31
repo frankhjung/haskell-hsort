@@ -6,17 +6,17 @@ stages:
 
 variables:
   RTSOPTS: "+RTS -N1"
-  STACK_ROOT: "${CI_PROJECT_DIR}/.stack"
+  STACK_ROOT: ${CI_PROJECT_DIR}/.stack
 
 build:
   except:
     - tags
   image:
-    name: frankhjung/haskell:8.6.5
+    name: frankhjung/haskell:8.8.4
     entrypoint: [""]
   stage: build
   script:
-    - make setup clean all
+    - make setup clean check build test bench doc exec
     - mv $(stack path --local-doc-root) public/
   artifacts:
     paths:
