@@ -11,6 +11,7 @@ echo generating test data …
 stack exec -- hsort -t 50000 > random.test
 rm -f random.bench
 rm -f random.sorted
+rm -f hsort.tix
 echo
 
 echo unix sort

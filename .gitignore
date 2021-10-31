@@ -5,6 +5,7 @@ dist
 *.html
 *.lock
 *.o
+public/
 random.*
 scrapbook
 .stack-work/
