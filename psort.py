@@ -1,14 +1,19 @@
 #!/usr/bin/env python3
 
+"""
+Sort lines from STDIN to STDOUT.
+"""
+
 import sys
 
-rc = 0
 try:
     lines = sys.stdin.readlines()
-    out = sys.stdout
-    map(out.write, sorted(lines))
-except:
-    rc = 1
-finally:
-    out.close()
-sys.exit(rc)
+    for line in sorted(lines):
+        print(line, end='')
+    sys.exit(0)
+except KeyboardInterrupt:
+    print("Program interrupted by user.")
+    sys.exit(1)
+except IOError as e:
+    print(f"An error occurred: {e}")
+    sys.exit(1)
